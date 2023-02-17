@@ -7,29 +7,33 @@ export default function Login() {
         <div className="card-body">
           <h1 className="card-title">Login page</h1>
           <form className="pt-5">
-            <div class="form-outline mb-4">
-              <label class="form-label" for="form2Example1">
+            <div className="form-outline mb-4">
+              <label className="form-label" htmlFor="form2Example1">
                 User ID
               </label>
-              <input type="email" id="form2Example1" class="form-control" />
+              <input type="email" id="form2Example1" className="form-control" />
             </div>
 
-            <div class="form-outline mb-4">
-              <label class="form-label" for="form2Example2">
+            <div className="form-outline mb-4">
+              <label className="form-label" htmlFor="form2Example2">
                 Password
               </label>
-              <input type="password" id="form2Example2" class="form-control" />
+              <input
+                type="password"
+                id="form2Example2"
+                className="form-control"
+              />
             </div>
 
-            <div class="row mb-4">
-              <div class="col d-flex justify-content-center">
-                <div class="form-check">
-                  <label class="form-check-label" for="form2Example31">
+            <div className="row mb-4">
+              <div className="col d-flex justify-content-center">
+                <div className="form-check">
+                  <label className="form-check-label" htmlFor="form2Example31">
                     {" "}
                     Remember me{" "}
                   </label>
                   <input
-                    class="form-check-input"
+                    className="form-check-input"
                     type="checkbox"
                     value=""
                     id="form2Example31"
@@ -38,34 +42,34 @@ export default function Login() {
                 </div>
               </div>
 
-              <div class="col">
+              <div className="col">
                 <a href="#!">Forgot password?</a>
               </div>
             </div>
 
-            <button type="button" class="btn btn-primary btn-block mb-4">
+            <button type="button" className="btn btn-primary btn-block mb-4">
               Sign in
             </button>
 
-            <div class="text-center">
+            <div className="text-center">
               <p>
                 Not a member? <Link to="/register">Register</Link>
               </p>
               {/* <p>or sign up with:</p> */}
-              <button type="button" class="btn btn-link btn-floating mx-1">
-                <i class="fab fa-facebook-f"></i>
+              <button type="button" className="btn btn-link btn-floating mx-1">
+                <i className="fab fa-facebook-f"></i>
               </button>
 
-              <button type="button" class="btn btn-link btn-floating mx-1">
-                <i class="fab fa-google"></i>
+              <button type="button" className="btn btn-link btn-floating mx-1">
+                <i className="fab fa-google"></i>
               </button>
 
-              <button type="button" class="btn btn-link btn-floating mx-1">
-                <i class="fab fa-twitter"></i>
+              <button type="button" className="btn btn-link btn-floating mx-1">
+                <i className="fab fa-twitter"></i>
               </button>
 
-              <button type="button" class="btn btn-link btn-floating mx-1">
-                <i class="fab fa-github"></i>
+              <button type="button" className="btn btn-link btn-floating mx-1">
+                <i className="fab fa-github"></i>
               </button>
             </div>
           </form>

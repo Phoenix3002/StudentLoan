@@ -1,217 +1,226 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "../../Images/pic1.png";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
-function index() {
+function Register() {
+  const [inputData, setInputData] = useState({
+    firstName: "qwert",
+    lastName: "yuiop",
+    gender: "male",
+    mobileNo: "1234567890",
+    emailId: "mave@email.com",
+    password: "123",
+    confirmPassword: "123",
+  });
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const inputChange = (event) => {
+    setInputData({ ...inputData, [event.target.name]: event.target.value });
+  };
+  console.log(inputData);
+  const handleRegister = (event) => {
+    event.preventDefault();
+    console.log("inputData");
+    // console.log(inputData);
+    if (inputData.password === inputData.confirmPassword) {
+      axios
+        .get(`http://localhost:4000/users?emailId=${inputData.emailId}`)
+        .then((response) => {
+          if (response.data.length !== 0) {
+            setError("User already exists with this user id.");
+          } else {
+            setError("");
+            axios.post("http://localhost:4000/users", inputData).then(() => {
+              navigate("/login");
+            });
+          }
+        })
+        .catch((error) => setError(error));
+    } else {
+      setError("Passwords don't match!");
+    }
+  };
   return (
     <div>
-      <section class="h-100 bg-secondary">
-        <div class="container py-5 h-100 ">
-          <div class="row d-flex justify-content-center align-items-center h-100 ">
-            <div class="col">
-              <div class="card card-registration my-4">
-                <div class="row g-0">
-                  <div class="col-xl-6 d-none d-xl-block ">
+      <section className="h-100 bg-secondary">
+        <div className="container py-5 h-100 ">
+          <div className="row d-flex justify-content-center align-items-center h-100 ">
+            <div className="col">
+              <div className="card card-registration my-4">
+                <div className="row g-0">
+                  <div className="col-xl-6 d-none d-xl-block ">
                     <img
                       src={Image}
                       style={{ width: "90%", marginTop: "15%" }}
                     />
                   </div>
-                  <div class="col-xl-6">
-                    <div class="card-body p-md-5 text-black">
-                      <h3 class="mb-5 text-uppercase">
+                  <div className="col-xl-6">
+                    <div className="card-body p-md-5 text-black">
+                      <h3 className="mb-5 text-uppercase">
                         Student registration form
                       </h3>
-
-                      <div class="row">
-                        <div class="col-md-6 mb-4">
-                          <div class="form-outline">
-                            <input
-                              type="text"
-                              id="form3Example1m"
-                              class="form-control form-control-lg"
-                              placeholder="First name"
-                            />
-                            {/* <label class="form-label" for="form3Example1m">
-                              First name
-                            </label> */}
+                      <form className="row" onSubmit={handleRegister}>
+                        <div className="row">
+                          <div className="col-md-6 mb-4">
+                            <div className="form-outline">
+                              <input
+                                type="text"
+                                id="firstName"
+                                name="firstName"
+                                value={inputData.firstName}
+                                onChange={inputChange}
+                                className="form-control form-control-lg"
+                                placeholder="First name"
+                              />
+                            </div>
+                          </div>
+                          <div className="col-md-6 mb-4">
+                            <div className="form-outline">
+                              <input
+                                type="text"
+                                id="lastName"
+                                name="lastName"
+                                value={inputData.lastName}
+                                onChange={inputChange}
+                                className="form-control form-control-lg"
+                                placeholder="Last name"
+                              />
+                            </div>
                           </div>
                         </div>
-                        <div class="col-md-6 mb-4">
-                          <div class="form-outline">
+
+                        <div className="d-md-flex justify-content-start align-items-center mb-4 py-2">
+                          <h6 className="mb-0 me-4">Gender: </h6>
+
+                          <div className="form-check form-check-inline mb-0 me-4">
                             <input
-                              type="text"
-                              id="form3Example1n"
-                              class="form-control form-control-lg"
-                              placeholder="Last name"
+                              className="form-check-input"
+                              type="radio"
+                              name="gender"
+                              id="MaleGender"
+                              value="male"
+                              onChange={inputChange}
                             />
-                            {/* <label class="form-label" for="form3Example1n">
-                              
-                            </label> */}
+                            <label
+                              className="form-check-label"
+                              htmlFor="maleGender"
+                            >
+                              Male
+                            </label>
+                          </div>
+
+                          <div className="form-check form-check-inline mb-0 me-4">
+                            <input
+                              className="form-check-input"
+                              type="radio"
+                              name="gender"
+                              id="FemaleGender"
+                              value="female"
+                              onChange={inputChange}
+                            />
+                            <label
+                              className="form-check-label"
+                              htmlFor="femaleGender"
+                            >
+                              Female
+                            </label>
+                          </div>
+
+                          <div className="form-check form-check-inline mb-0">
+                            <input
+                              className="form-check-input"
+                              type="radio"
+                              name="gender"
+                              id="Other"
+                              value="other"
+                              onChange={inputChange}
+                            />
+                            <label
+                              className="form-check-label"
+                              htmlFor="otherGender"
+                            >
+                              Other
+                            </label>
                           </div>
                         </div>
-                      </div>
 
-                      <div class="row">
-                        <div class="col-md-6 mb-4">
-                          <div class="form-outline">
-                            <input
-                              type="text"
-                              id="form3Example1m1"
-                              class="form-control form-control-lg"
-                              placeholder="Mother's Name"
-                            />
-                            {/* <label class="form-label" for="form3Example1m1">
-                              Mother's name
-                            </label> */}
-                          </div>
-                        </div>
-                        <div class="col-md-6 mb-4">
-                          <div class="form-outline">
-                            <input
-                              type="text"
-                              id="form3Example1n1"
-                              class="form-control form-control-lg"
-                              placeholder="Father's Name"
-                            />
-                            {/* <label class="form-label" for="form3Example1n1">
-                              Father's name
-                            </label> */}
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="form-outline mb-4">
-                        <input
-                          type="text"
-                          id="form3Example8"
-                          class="form-control form-control-lg"
-                          placeholder="Address"
-                        />
-                        {/* <label class="form-label" for="form3Example8">
-                          Address
-                        </label> */}
-                      </div>
-
-                      {/* <label class="form-label" for="form3Example8">
-                          Address
-                        </label> */}
-
-                      <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
-                        <h6 class="mb-0 me-4">Gender: </h6>
-
-                        <div class="form-check form-check-inline mb-0 me-4">
+                        <div className="form-outline mb-4">
                           <input
-                            class="form-check-input"
-                            type="radio"
-                            name="inlineRadioOptions"
-                            id="femaleGender"
-                            value="option1"
+                            type="tel"
+                            id="MobileNumber"
+                            name="mobileNo"
+                            value={inputData.mobileNo}
+                            onChange={inputChange}
+                            className="form-control form-control-lg"
+                            placeholder="Mobile no"
                           />
-                          <label class="form-check-label" for="femaleGender">
-                            Female
-                          </label>
                         </div>
 
-                        <div class="form-check form-check-inline mb-0 me-4">
+                        <div className="form-outline mb-4">
                           <input
-                            class="form-check-input"
-                            type="radio"
-                            name="inlineRadioOptions"
-                            id="maleGender"
-                            value="option2"
+                            type="email"
+                            id="Email"
+                            name="emailId"
+                            value={inputData.emailId}
+                            onChange={inputChange}
+                            className="form-control form-control-lg"
+                            placeholder="Email ID"
                           />
-                          <label class="form-check-label" for="maleGender">
-                            Male
-                          </label>
                         </div>
 
-                        <div class="form-check form-check-inline mb-0">
-                          <input
-                            class="form-check-input"
-                            type="radio"
-                            name="inlineRadioOptions"
-                            id="otherGender"
-                            value="option3"
-                          />
-                          <label class="form-check-label" for="otherGender">
-                            Other
-                          </label>
+                        <div className="row">
+                          <div className="col-md-6 mb-4">
+                            <div className="form-outline">
+                              <input
+                                type="password"
+                                id="Password"
+                                name="password"
+                                value={inputData.password}
+                                onChange={inputChange}
+                                className="form-control form-control-lg"
+                                placeholder="Password"
+                              />
+                            </div>
+                          </div>
+                          <div className="col-md-6 mb-4">
+                            <div className="form-outline">
+                              <input
+                                type="Password"
+                                id="ConfirmPassword"
+                                name="confirmPassword"
+                                value={inputData.confirmPassword}
+                                onChange={inputChange}
+                                className="form-control form-control-lg"
+                                placeholder="Confirm Password"
+                              />
+                            </div>
+                          </div>
                         </div>
-                      </div>
-
-                      {/* <div class="row">
-                        <div class="col-md-6 mb-4">
-                          <select class="select">
-                            <option value="1">State</option>
-                            <option value="2">Option 1</option>
-                            <option value="3">Option 2</option>
-                            <option value="4">Option 3</option>
-                          </select>
+                        <div className="d-flex justify-content-end pt-3">
+                          <button type="reset" className="btn btn-light btn-lg">
+                            Reset
+                          </button>
+                          <button
+                            type="submit"
+                            className="btn btn-warning btn-lg ms-2"
+                          >
+                            Submit
+                          </button>
                         </div>
-                        <div class="col-md-6 mb-4">
-                          <select class="select">
-                            <option value="1">City</option>
-                            <option value="2">Option 1</option>
-                            <option value="3">Option 2</option>
-                            <option value="4">Option 3</option>
-                          </select>
-                        </div>
-                      </div> */}
-
-                      <div class="form-outline mb-4">
-                        <input
-                          type="date"
-                          id="form3Example9"
-                          class="form-control form-control-lg"
-                          placeholder="DOB"
-                        />
-                        {/* <label class="form-label" for="form3Example9">
-                          DOB
-                        </label> */}
-                      </div>
-
-                      <div class="form-outline mb-4">
-                        <input
-                          type="text"
-                          id="form3Example90"
-                          class="form-control form-control-lg"
-                          placeholder="Mobile no"
-                        />
-                        {/* <label class="form-label" for="form3Example90">
-                          Mobile no
-                        </label> */}
-                      </div>
-
-                      <div class="form-outline mb-4">
-                        <input
-                          type="text"
-                          id="form3Example99"
-                          class="form-control form-control-lg"
-                          placeholder="Email ID"
-                        />
-                        {/* <label class="form-label" for="form3Example99">
-                          Mobile no
-                        </label> */}
-                      </div>
-                      <div class="form-group col-md-4">
-                        <label for="inputState" style={{ MarginLeft: "50%" }}>
-                          State
-                        </label>
-                        <select id="inputState" class="form-control">
-                          <option selected>Choose...</option>
-                          <option>...</option>
-                        </select>
-                      </div>
-                      <div class="d-flex justify-content-end pt-3">
-                        <button type="button" class="btn btn-light btn-lg">
-                          Reset
-                        </button>
-                        <button
-                          type="button"
-                          class="btn btn-warning btn-lg ms-2"
-                        >
-                          Submit
-                        </button>
+                      </form>
+                      <div>
+                        {error !== "" && (
+                          <div className="card d-flex flex-row w-100 bg-danger text-light mt-3">
+                            <div className="card-body">{error}</div>
+                            <button
+                              type="button"
+                              className="btn-close my-auto text-white me-2"
+                              aria-label="Close"
+                              onClick={() => setError("")}
+                            ></button>
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -224,4 +233,4 @@ function index() {
     </div>
   );
 }
-export default index;
+export default Register;
