@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-import Image from "../../Images/pic1.png";
+import Image from "../../Images/edloan.png";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function Register() {
   const [inputData, setInputData] = useState({
-    firstName: "qwert",
-    lastName: "yuiop",
-    gender: "male",
-    mobileNo: "1234567890",
-    emailId: "mave@email.com",
-    password: "123",
-    confirmPassword: "123",
+    firstName: "",
+    lastName: "",
+    gender: "",
+    mobileNo: "",
+    emailId: "",
+    password: "",
+    confirmPassword: "",
   });
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -52,12 +52,12 @@ function Register() {
                   <div className="col-xl-6 d-none d-xl-block ">
                     <img
                       src={Image}
-                      style={{ width: "90%", marginTop: "15%" }}
+                      style={{ width: "90%", marginTop: "2%" }}
                     />
                   </div>
                   <div className="col-xl-6">
                     <div className="card-body p-md-5 text-black">
-                      <h3 className="mb-5 text-uppercase">
+                      <h3 className="mb-5 text-uppercase ">
                         Student registration form
                       </h3>
                       <form className="row" onSubmit={handleRegister}>
@@ -198,9 +198,14 @@ function Register() {
                           </div>
                         </div>
                         <div className="d-flex justify-content-end pt-3">
+                          <Link to="/home" className="btn btn-light btn-lg">
+                            Close
+                          </Link>
+
+                          {/* 
                           <button type="reset" className="btn btn-light btn-lg">
-                            Reset
-                          </button>
+                            Close
+                          </button> */}
                           <button
                             type="submit"
                             className="btn btn-warning btn-lg ms-2"

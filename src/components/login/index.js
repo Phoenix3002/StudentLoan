@@ -5,7 +5,7 @@ export default function Login() {
     <div className="container">
       <div className="card m-auto p-3" style={{ width: "400px" }}>
         <div className="card-body">
-          <h1 className="card-title">Login page</h1>
+          <h1 className="card-title">Login!</h1>
           <form className="pt-5">
             <div className="form-outline mb-4">
               <label className="form-label" htmlFor="form2Example1">
@@ -46,17 +46,18 @@ export default function Login() {
                 <a href="#!">Forgot password?</a>
               </div>
             </div>
-
-            <button type="button" className="btn btn-primary btn-block mb-4">
-              Sign in
-            </button>
+            <div class="col-md-12 text-center">
+              <button type="button" className="btn btn-primary btn-block mb-4">
+                Sign in
+              </button>
+            </div>
 
             <div className="text-center">
               <p>
-                Not a member? <Link to="/register">Register</Link>
+                Not a member yet? <Link to="/register">Register here</Link>
               </p>
               {/* <p>or sign up with:</p> */}
-              <button type="button" className="btn btn-link btn-floating mx-1">
+              {/* <button type="button" className="btn btn-link btn-floating mx-1">
                 <i className="fab fa-facebook-f"></i>
               </button>
 
@@ -70,7 +71,7 @@ export default function Login() {
 
               <button type="button" className="btn btn-link btn-floating mx-1">
                 <i className="fab fa-github"></i>
-              </button>
+              </button> */}
             </div>
           </form>
         </div>

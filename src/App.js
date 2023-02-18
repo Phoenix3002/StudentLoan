@@ -4,17 +4,21 @@ import Login from "./components/login";
 import Navbar from "./components/navbar";
 import Register from "./components/register";
 import Home from "./components/home";
+import Main from "./components/main";
 import { Footer } from "./components";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App ">
       <Navbar />
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/home" element={<Home />} />
-      </Routes>
+      <div className="min-vh-100">
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/main" element={<Main />} />
+        </Routes>
+      </div>
       <Footer />
     </div>
   );

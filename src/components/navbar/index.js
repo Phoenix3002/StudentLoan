@@ -6,7 +6,7 @@ export default function Navbar() {
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <a className="navbar-brand" href="/">
-          PSR Bank
+          PSC Bank
         </a>
         <button
           className="navbar-toggler"
@@ -27,12 +27,17 @@ export default function Navbar() {
                 Home
               </a>
             </li>
-            <li className="nav-item">
+            <li className="nav-item active">
+              <a className="nav-link" href="#">
+                Loan-Calculator
+              </a>
+            </li>
+            {/* <li className="nav-item">
               <a className="nav-link" href="#">
                 PSR Loans
               </a>
-            </li>
-            <li className="nav-item dropdown">
+            </li> */}
+            {/* <li className="nav-item dropdown">
               <a
                 className="nav-link dropdown-toggle"
                 href="#"
@@ -61,7 +66,7 @@ export default function Navbar() {
               <a className="nav-link disabled" href="#">
                 Disabled
               </a>
-            </li>
+            </li> */}
             <li className="nav-item">
               <Link
                 to="/login"
