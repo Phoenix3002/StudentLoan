@@ -13,6 +13,7 @@ function App() {
       <Navbar />
       <div className="min-vh-100">
         <Routes>
+          {/* dummy */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/home" element={<Home />} />
